@@ -4,4 +4,6 @@ dist
 *.log
 .vscode
 .idea
+*.zip
+*.crx
 
