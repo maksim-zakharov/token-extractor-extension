@@ -1,4 +1,4 @@
-import { createWriteStream } from 'node:fs';
+import { createWriteStream, readFileSync } from 'node:fs';
 import { readdir, stat } from 'node:fs/promises';
 import { join, relative, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,7 +8,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const projectRoot = resolve(__dirname, '..');
 const distDir = resolve(projectRoot, 'dist');
-const outputPath = resolve(projectRoot, 'token-extractor-extension.zip');
+
+const { version } = JSON.parse(readFileSync(resolve(projectRoot, 'package.json'), 'utf-8'));
+const zipName = `token-extractor-extension-${version}.zip`;
+const outputPath = resolve(projectRoot, zipName);
 
 /**
  * Создает zip архив из папки dist
@@ -24,7 +27,7 @@ async function createZip() {
       const sizeInBytes = archive.pointer();
       const sizeInKB = (sizeInBytes / 1024).toFixed(2);
       const sizeInMB = (sizeInBytes / 1024 / 1024).toFixed(2);
-      console.log(`✓ Архив создан: token-extractor-extension.zip`);
+      console.log(`✓ Архив создан: ${zipName}`);
       console.log(`✓ Размер архива: ${sizeInKB} KB (${sizeInMB} MB)`);
       resolve();
     });

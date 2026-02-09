@@ -7,6 +7,7 @@
     "build": "vite build",
     "package": "node scripts/package-extension.js",
     "build:package": "npm run build && npm run package",
+    "version": "node scripts/sync-manifest-version.js && npm run build && npm run package",
     "preview": "vite preview"
   },
   "dependencies": {
