@@ -3,11 +3,11 @@
   "version": "1.0.1",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/sync-manifest-version.js && vite build --watch --mode development",
-    "build": "node scripts/sync-manifest-version.js && vite build",
+    "dev": "vite build --watch --mode development",
+    "build": "vite build",
     "package": "node scripts/package-extension.js",
     "build:package": "npm run build && npm run package",
-    "version": "npm run build && npm run package",
+    "version": "node scripts/sync-manifest-version.js && npm run build && npm run package",
     "preview": "vite preview"
   },
   "dependencies": {

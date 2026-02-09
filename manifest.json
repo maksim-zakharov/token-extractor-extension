@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Token Extractor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Извлекает токены авторизации с различных бирж",
   "permissions": [
     "cookies",
