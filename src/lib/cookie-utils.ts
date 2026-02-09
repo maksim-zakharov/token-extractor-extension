@@ -1,7 +1,7 @@
 /**
  * Определяет тип биржи по URL
  */
-export type ExchangeType = 'mexc' | 'kcex' | 'ourbit' | 'unsupported';
+export type ExchangeType = 'mexc' | 'kcex' | 'ourbit' | 'lite-invest' | 'unsupported';
 
 /**
  * Определяет тип биржи по домену
@@ -9,7 +9,7 @@ export type ExchangeType = 'mexc' | 'kcex' | 'ourbit' | 'unsupported';
 export function getExchangeType(url: string): ExchangeType {
   try {
     const hostname = new URL(url).hostname.toLowerCase();
-    
+
     if (hostname.includes('mexc.com')) {
       return 'mexc';
     }
@@ -19,7 +19,10 @@ export function getExchangeType(url: string): ExchangeType {
     if (hostname.includes('ourbit.com')) {
       return 'ourbit';
     }
-    
+    if (hostname.includes('lite-invest.com')) {
+      return 'lite-invest';
+    }
+
     return 'unsupported';
   } catch {
     return 'unsupported';
@@ -65,6 +68,10 @@ export async function getTokenFromCookie(): Promise<{
       case 'ourbit':
         cookieName = 'u_id';
         exchangeName = 'OurBit';
+        break;
+      case 'lite-invest':
+        cookieName = 'strapi_jwt';
+        exchangeName = 'Lite Invest';
         break;
       default:
         return { token: null, exchange: 'unsupported', exchangeName: 'Не поддерживается' };

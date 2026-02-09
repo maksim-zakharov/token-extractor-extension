@@ -10,7 +10,8 @@
   "host_permissions": [
     "https://*.mexc.com/*",
     "https://*.kcex.com/*",
-    "https://*.ourbit.com/*"
+    "https://*.ourbit.com/*",
+    "https://lk.lite-invest.com/*"
   ],
   "action": {
     "default_popup": "popup.html",

@@ -71,7 +71,7 @@ export function TokenDisplay() {
         <div className="text-center py-4 text-muted-foreground">
           <p>Эта биржа не поддерживается</p>
           <p className="text-xs mt-2">
-            Поддерживаемые биржи: MEXC, KCEX, OurBit
+            Поддерживаемые: MEXC, KCEX, OurBit, Lite Invest
           </p>
         </div>
       ) : token ? (
