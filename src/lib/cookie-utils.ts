@@ -1,7 +1,7 @@
 /**
  * Определяет тип биржи по URL
  */
-export type ExchangeType = 'mexc' | 'kcex' | 'ourbit' | 'lite-invest' | 'unsupported';
+export type ExchangeType = 'mexc' | 'kcex' | 'ourbit' | 'lite-invest' | 'kas' | 'unsupported';
 
 /**
  * Определяет тип биржи по домену
@@ -21,6 +21,9 @@ export function getExchangeType(url: string): ExchangeType {
     }
     if (hostname.includes('lite-invest.com')) {
       return 'lite-invest';
+    }
+    if (hostname.includes('kas.wtf')) {
+      return 'kas';
     }
 
     return 'unsupported';
@@ -72,6 +75,10 @@ export async function getTokenFromCookie(): Promise<{
       case 'lite-invest':
         cookieName = 'strapi_jwt';
         exchangeName = 'Lite Invest';
+        break;
+      case 'kas':
+        cookieName = 'token';
+        exchangeName = 'KAS (KasCapital)';
         break;
       default:
         return { token: null, exchange: 'unsupported', exchangeName: 'Не поддерживается' };
